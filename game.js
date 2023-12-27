@@ -19,9 +19,9 @@ for (let i=1; i<5; i++){
     $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);//se vinci si visualizzano colori da sistemare dopo
 
 }
-//create de cells
+//create boards cells-possible in future to change 28 in a var according to level difficulties
     for(let i=0; i<28; i++) {
-        let cell = "<div class=\"board-cell\" id=board"+i+"></div>";
+        let cell = "<div class=\"board-cell\" id=board"+i+" data-isValid=\"false\"></div>";
         $(".board").append(cell);
     }
     for(let i=0; i<28; i++) {
@@ -30,4 +30,45 @@ for (let i=1; i<5; i++){
     }
 
 
+    for(let i=0; i<28; i++) {
+        //prima situazione e vittoria
+        //seconda situazione :perso perche finite opportunita
+        //terzo caso- ne vittoria ne perso- gioco vero e proprio
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $(".instructions").click(() => {
+        $("h4").text("Guess the 4 colours the computer has choosen. \nThe colours choosen by the computer will be ALL different");
+    })
+
+
 })
+
+/*
+COME PROSEGUIRE:
+sviluppare gioco, la casella deve essere zoomata. 
+quandoc clicchi il colore si assegna e si sposta alla casella dopo.
+ogni 4 cé il check(fare dopo per ultimo)
+
+
+
+
+
+
+DA RIFINIRE ALLA FINE
+inserire timer?
+inserire statistiche
+sistemare bottoni
+sistemare pc e tablet
+*/
