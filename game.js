@@ -28,6 +28,29 @@ for (let i=1; i<5; i++){
         let cell = "<div class=\"peg-cell\" id=peg"+i+"></div>";
         $(".pegs").append(cell);
     }
+    const colorCellAssign = (board) => {
+        $(".box").click(event => {
+            let color= $(event.target).attr("data-color");
+            $(board).css("background-color", color);
+        })
+        
+
+
+        /*
+ $(".color").click(function() {
+        let color= $(this).attr("id");
+        currentColor= color;
+        $(".currentColor").css("background-color", color);
+
+    })
+        */
+    }
+    for(let i=0; i<28; i++) {
+       colorCellAssign("#board"+i)
+    }
+
+
+
 
 
     for(let i=0; i<28; i++) {
