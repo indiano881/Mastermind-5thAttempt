@@ -94,12 +94,50 @@ button {
 button:hover {
     transform: scale(1.1);
 }
+
+.full-board {
+    border: var(--border-tycker);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 10px;
+    min-height: 200px;
+    min-width: 200px;
+}
+
+.board,
+.pegs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+}
+
+.board-cell {
+    background-color: white;
+    border: var(--border-tycker);
+    border-radius: 50%;
+    margin: 5px;
+    min-height: 50px;
+    min-width: 50px;
+}
+
+.peg-cell {
+    background-color: white;
+    border: var(--border-standard);
+    border-radius: 50%;
+    max-height: 35px;
+    min-width: 25px;
+}
+
+
+
+
 .solution-code {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 
 }
-.container {
+.container-solution {
     border: var(--border-tycker);
     border-radius: 50%;
     background-color: var(--secondary-color);

@@ -16,11 +16,18 @@ for (let i = 0; i < computerColourChoice.length; i++) {
 //assigning secret combination to visualization
 for (let i=1; i<5; i++){
     $(".secret-color"+i).attr("data-color", computerColourChoice[i-1]);
-    $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);
-
+    $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);//se vinci si visualizzano colori da sistemare dopo
 
 }
-
+//create de cells
+    for(let i=0; i<28; i++) {
+        let cell = "<div class=\"board-cell\" id=board"+i+"></div>";
+        $(".board").append(cell);
+    }
+    for(let i=0; i<28; i++) {
+        let cell = "<div class=\"peg-cell\" id=peg"+i+"></div>";
+        $(".pegs").append(cell);
+    }
 
 
 })
