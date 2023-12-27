@@ -6,6 +6,7 @@ const COLOUR_DATABASE = ["red","orange","yellow","green","blue","purple","pink",
 let copy_COLOUR_DATABASE = Array.from(COLOUR_DATABASE);
 let computerColourChoice = new Array (4);
 let removeColourIndex;
+let totalBoardAndPegCells= 4*7; //4 color multipled 7 rows/possible in future to change rows with a var according to level difficulties
 
 
 //Computer colour array generator
@@ -19,38 +20,41 @@ for (let i=1; i<5; i++){
     $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);//se vinci si visualizzano colori da sistemare dopo
 
 }
-//create boards cells-possible in future to change 28 in a var according to level difficulties
-    for(let i=0; i<28; i++) {
+//create boards cells-
+    for(let i=0; i<totalBoardAndPegCells; i++) {
         let cell = "<div class=\"board-cell\" id=board"+i+" data-isValid=\"false\"></div>";
         $(".board").append(cell);
     }
-    for(let i=0; i<28; i++) {
+    for(let i=0; i<totalBoardAndPegCells; i++) {
         let cell = "<div class=\"peg-cell\" id=peg"+i+"></div>";
         $(".pegs").append(cell);
     }
-    const colorCellAssign = (board) => {
+    const colorCellAssign = () => {
+
+        let currentBoardIndex=0;
         $(".box").click(event => {
             let color= $(event.target).attr("data-color");
-            $(board).css("background-color", color);
+
+            let currentBoardId = "#board"+ currentBoardIndex;
+
+            $(currentBoardId).css("transform", "scale(1.2)");
+            $(currentBoardId).css("border", "5px solid black");
+
+
+            $(currentBoardId).css("background-color", color);
+            currentBoardId++;
+            
         })
         
 
 
-        /*
- $(".color").click(function() {
-        let color= $(this).attr("id");
-        currentColor= color;
-        $(".currentColor").css("background-color", color);
-
-    })
-        */
+   
     }
-    for(let i=0; i<28; i++) {
+    for(let i=0; i<totalBoardAndPegCells; i++) {
        colorCellAssign("#board"+i)
     }
     
-    $("#board0").css("transform", "scale(1.2)");
-    $("#board0").css("border", "5px solid black");
+  
 
 
 
