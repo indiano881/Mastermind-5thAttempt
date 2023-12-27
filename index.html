@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastermind jquery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="game.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Mastermind</h1>
+    </header>
+    <section>
+        <article class="grid-display-colours">
+            <div class="box red" data-color="red"></div>
+            <div class="box orange" data-color="orange"></div>
+            <div class="box yellow" data-color="yellow"></div>
+            <div class="box green" data-color="green"></div>
+            <div class="box blue" data-color="blue"></div>
+            <div class="box purple" data-color="purple"></div>
+            <div class="box pink" data-color="pink"></div>
+            <div class="box brown" data-color="brown"></div>
+            <div class="box aqua" data-color="aqua"></div>
+        </article>
+        <article>
+            <div class="content">
+                <div class="fullBoard">
+                    <div class="board"></div>
+                    <div class="pegs"></div>
+                </div>
+        </article>
+        <article>
+            <div class="solution-code">
+                <div class="secret-color1"></div>
+                <div class="secret-color2"></div>
+                <div class="secret-color3"></div>
+                <div class="secret-color4"></div>
+            </div>
+        </article>
+        <article class="buttons-field">
+            <button class="start-game">Start the game</button>
+            <button>1 Player</button>
+            <button class="continue-session">Continue Session</button>
+            <button class="instructions">Instruction</button>
+        </article>
+    </section>
+    <footer>
+        <h4>© Davide Baldi - FEA23 - ASSIGNEMENT 3- 30-DEC-2023</h4>
+    </footer>
+</body>
+</html>
