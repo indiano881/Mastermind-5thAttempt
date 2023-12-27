@@ -4,6 +4,7 @@
     --secondary-color: #000;
     --terziary-color: #fff;
     --border-standard: 1px solid black;
+    --border-tycker: 3px solid black;
 
 }
 
@@ -82,7 +83,7 @@ button {
 }    
 
 .box {
-    border: 3px solid black;
+    border: var(--border-tycker);
     border-radius: 50px;
     min-height: 50px;
     padding: 12px;
@@ -92,6 +93,19 @@ button {
 .box:hover,
 button:hover {
     transform: scale(1.1);
+}
+.solution-code {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+}
+.container {
+    border: var(--border-tycker);
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    height:75px;
+    width: 75px;
+
 }
 .red {
     background-color: red;

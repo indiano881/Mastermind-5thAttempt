@@ -13,9 +13,11 @@ for (let i = 0; i < computerColourChoice.length; i++) {
     removeColourIndex = Math.floor(Math.random() * copy_COLOUR_DATABASE.length);
     computerColourChoice[i] = copy_COLOUR_DATABASE.splice(removeColourIndex, 1)[0];
 }
-
+//assigning secret combination to visualization
 for (let i=1; i<5; i++){
-    $(".secret-color"+i).attr("data-color",computerColourChoice[i-1]);
+    $(".secret-color"+i).attr("data-color", computerColourChoice[i-1]);
+    $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);
+
 
 }
 
