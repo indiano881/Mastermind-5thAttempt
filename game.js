@@ -48,6 +48,10 @@ for (let i=1; i<5; i++){
     for(let i=0; i<28; i++) {
        colorCellAssign("#board"+i)
     }
+    
+    $("#board0").css("transform", "scale(1.2)");
+    $("#board0").css("border", "5px solid black");
+
 
 
 
