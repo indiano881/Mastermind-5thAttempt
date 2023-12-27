@@ -7,7 +7,8 @@ let copy_COLOUR_DATABASE = Array.from(COLOUR_DATABASE);
 let computerColourChoice = new Array (4);
 let removeColourIndex;
 let totalBoardAndPegCells= 4*7; //4 color multipled 7 rows/possible in future to change rows with a var according to level difficulties
-
+let currentBoardIndex=0;
+let userHasWon=false;
 
 //Computer colour array generator
 for (let i = 0; i < computerColourChoice.length; i++) {
@@ -31,28 +32,41 @@ for (let i=1; i<5; i++){
     }
     const colorCellAssign = () => {
 
-        let currentBoardIndex=0;
-        $(".box").click(event => {
-            let color= $(event.target).attr("data-color");
+        let currentBoardId = "#board" + currentBoardIndex;
 
-            let currentBoardId = "#board"+ currentBoardIndex;
+        // Add styling to the current board cell
+        $(currentBoardId).css("transform", "scale(1.2)");
+        $(currentBoardId).css("border", "5px solid black");
 
-            $(currentBoardId).css("transform", "scale(1.2)");
-            $(currentBoardId).css("border", "5px solid black");
-
-
+        // Handle click event for color assignment
+        $(".box").one("click", event => {
+            let color = $(event.target).attr("data-color");
             $(currentBoardId).css("background-color", color);
-            currentBoardId++;
+
+            // Move to the next board cell
+            currentBoardIndex++;
+
+            // Check for game completion 
+            if (currentBoardIndex >= totalBoardAndPegCells) {
+                // Add logic for reaching the end of the board
+                console.log("Game completed!");
+            } else {
+                // Continue the game by calling colorCellAssign 
+                colorCellAssign();
+            }
+
             
         })
+
+
         
-
-
-   
     }
-    for(let i=0; i<totalBoardAndPegCells; i++) {
-       colorCellAssign("#board"+i)
-    }
+    
+
+    
+    colorCellAssign();
+    
+    
     
   
 
