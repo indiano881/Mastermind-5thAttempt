@@ -43,10 +43,10 @@ for (let i=1; i<5; i++){
         // Handle click event for color assignment
         $(".box").on("click", event => {
 
-            let revealed= $(currentBoardId).attr("data-revealed");//no container board cell? fare con ID?????
+            let revealed= $(currentBoardId).attr("data-revealed");
             
             if (revealed==="true" ) {
-
+                
                 return;
             }
 
@@ -58,7 +58,7 @@ for (let i=1; i<5; i++){
 
             // Move to the next board cell
             currentBoardIndex++;
-            
+
             console.log(currentBoardIndex);
 
             // Check for game completion 
@@ -68,6 +68,7 @@ for (let i=1; i<5; i++){
             } else {
                 // Continue the game by calling colorCellAssign 
                 colorCellAssign();
+                checkFourColourRow();
             }
 
             
@@ -78,7 +79,45 @@ for (let i=1; i<5; i++){
     }
     
 
-    
+    const checkFourColourRow = () => {
+        if ($("#board0").attr("data-revealed")==="true"&&
+        $("#board1").attr("data-revealed")==="true"&&
+        $("#board2").attr("data-revealed")==="true"&&
+        $("#board3").attr("data-revealed")==="true") {
+            console.log("row one");
+        } else if ($("#board4").attr("data-revealed")==="true"&&
+        $("#board5").attr("data-revealed")==="true"&&
+        $("#board6").attr("data-revealed")==="true"&&
+        $("#board7").attr("data-revealed")==="true") {
+            console.log("row 2")
+        } else if ($("#board8").attr("data-revealed")==="true"&&
+        $("#board9").attr("data-revealed")==="true"&&
+        $("#board10").attr("data-revealed")==="true"&&
+        $("#board11").attr("data-revealed")==="true") {
+            console.log("row 3");
+        } else if ($("#board12").attr("data-revealed")==="true"&&
+        $("#board13").attr("data-revealed")==="true"&&
+        $("#board14").attr("data-revealed")==="true"&&
+        $("#board15").attr("data-revealed")==="true") {
+            console.log("row 4")
+        } else if ($("#board16").attr("data-revealed")==="true"&&
+        $("#board17").attr("data-revealed")==="true"&&
+        $("#board18").attr("data-revealed")==="true"&&
+        $("#board19").attr("data-revealed")==="true") {
+            console.log("row 5")
+        } else if ($("#board20").attr("data-revealed")==="true"&&
+        $("#board21").attr("data-revealed")==="true"&&
+        $("#board22").attr("data-revealed")==="true"&&
+        $("#board23").attr("data-revealed")==="true") {
+            console.log("row 6");
+        } else if ($("#board24").attr("data-revealed")==="true"&&
+        $("#board25").attr("data-revealed")==="true"&&
+        $("#board26").attr("data-revealed")==="true"&&
+        $("#board27").attr("data-revealed")==="true") {
+            console.log("row 7")
+        }
+        
+    }
     
     
     
