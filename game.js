@@ -23,13 +23,15 @@ for (let i=1; i<5; i++){
 }
 //create boards cells-
     for(let i=0; i<totalBoardAndPegCells; i++) {
-        let cell = "<div class=\"board-cell\" id=board"+i+" data-isValid=\"false\"></div>";
+        let cell = "<div class=\"board-cell\" id=board"+i+" data-revealed=\"false\"></div>";
         $(".board").append(cell);
     }
     for(let i=0; i<totalBoardAndPegCells; i++) {
         let cell = "<div class=\"peg-cell\" id=peg"+i+"></div>";
         $(".pegs").append(cell);
     }
+
+    
     const colorCellAssign = () => {
 
         let currentBoardId = "#board" + currentBoardIndex;
@@ -39,17 +41,30 @@ for (let i=1; i<5; i++){
         $(currentBoardId).css("border", "5px solid black");
 
         // Handle click event for color assignment
-        $(".box").one("click", event => {
+        $(".box").on("click", event => {
+
+            let revealed= $(currentBoardId).attr("data-revealed");//no container board cell? fare con ID?????
+            
+            if (revealed==="true" ) {
+
+                return;
+            }
+
             let color = $(event.target).attr("data-color");
+
             $(currentBoardId).css("background-color", color);
+
+            $(currentBoardId).attr("data-revealed", "true");
 
             // Move to the next board cell
             currentBoardIndex++;
+            
+            console.log(currentBoardIndex);
 
             // Check for game completion 
-            if (currentBoardIndex >= totalBoardAndPegCells) {
+            if (currentBoardIndex > totalBoardAndPegCells) {
                 // Add logic for reaching the end of the board
-                console.log("Game completed!");
+                console.log("Sorry you lost");
             } else {
                 // Continue the game by calling colorCellAssign 
                 colorCellAssign();
@@ -64,7 +79,7 @@ for (let i=1; i<5; i++){
     
 
     
-    colorCellAssign();
+    
     
     
     
@@ -75,24 +90,14 @@ for (let i=1; i<5; i++){
 
 
 
-    for(let i=0; i<28; i++) {
-        //prima situazione e vittoria
-        //seconda situazione :perso perche finite opportunita
-        //terzo caso- ne vittoria ne perso- gioco vero e proprio
-    }
+    
 
 
 
 
 
 
-
-
-
-
-
-
-
+    $(".start-game").click(()=>colorCellAssign());
     $(".instructions").click(() => {
         $("h4").text("Guess the 4 colours the computer has choosen. \nThe colours choosen by the computer will be ALL different");
     })
