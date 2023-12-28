@@ -5,10 +5,25 @@ $(()=>{
 const COLOUR_DATABASE = ["red","orange","yellow","green","blue","purple","pink","brown","aqua"];
 let copy_COLOUR_DATABASE = Array.from(COLOUR_DATABASE);
 let computerColourChoice = new Array (4);
+let usersColorsRow = [];
 let removeColourIndex;
 let totalBoardAndPegCells= 4*7; //4 color multipled 7 rows/possible in future to change rows with a var according to level difficulties
 let currentBoardIndex=0;
 let userHasWon=false;
+let isItARow=false;
+
+const colorMap = {
+    "rgb(255, 255, 255)": "white",
+    "rgb(255, 0, 0)": "red",
+    "rgb(255, 165, 0)": "orange",
+    "rgb(255, 255, 0)": "yellow",
+    "rgb(0, 128, 0)": "green",
+    "rgb(0, 0, 255)": "blue",
+    "rgb(128, 0, 128)": "purple",
+    "rgb(255, 192, 203)": "pink",
+    "rgb(165, 42, 42)": "brown",
+    "rgb(0, 255, 255)": "aqua"
+};
 
 //Computer colour array generator
 for (let i = 0; i < computerColourChoice.length; i++) {
@@ -55,6 +70,68 @@ for (let i=1; i<5; i++){
             $(currentBoardId).css("background-color", color);
 
             $(currentBoardId).attr("data-revealed", "true");
+            //push 4 colors to arrayrow
+            usersColorsRow.push($(currentBoardId).css("background-color"));
+            console.log(usersColorsRow);
+
+
+            //checking if it is a full 4 color row
+            for (let i=0; i<totalBoardAndPegCells; i++) {
+                if ($("#board3").attr("data-revealed")==="true"||
+                $("#board7").attr("data-revealed")==="true"||
+                $("#board11").attr("data-revealed")==="true"||
+                $("#board15").attr("data-revealed")==="true"||
+                $("#board19").attr("data-revealed")==="true"||
+                $("#board23").attr("data-revealed")==="true"||
+                $("#board27").attr("data-revealed")==="true") {
+                    isItARow=true;
+                }
+            }
+            //caso che la row e´ completa
+            if (isItARow) {
+                // Check if the user's guess matches the computer's color choice
+                let correctColors = 0;
+            
+                for (let i = 0; i < 4; i++) {
+                    if (usersColorsRow[i] === computerColourChoice[i]) {
+                        correctColors++;
+                    }
+                }
+            
+                // Handle the result based on the number of correct colors
+                if (correctColors === 4) {
+                    // All colors are correct - user wins
+                    console.log("Congratulations! You guessed the correct combination!");
+                    userHasWon = true;
+                } else {
+                    // Provide feedback or take appropriate actions
+                    console.log(`You have ${correctColors} correct color(s). Keep trying!`);
+                }
+            
+                // Reset the user's colors row
+                usersColorsRow = [];
+            
+                // Reset the revealed status of the cells in the current row
+                for (let i = currentBoardIndex - 4; i < currentBoardIndex; i++) {
+                    $(`#board${i}`).attr("data-revealed", "false");
+                }
+            
+                // Reset the current board index
+                currentBoardIndex -= 4;
+                isItARow = false;
+            
+                // Check for the game-winning condition
+                if (userHasWon) {
+                    // Handle the game-winning scenario
+                    console.log("Game over. You win!");
+                } else {
+                    // Move to the next row
+                    console.log("Move to the next row");
+                }
+            }
+            
+
+
 
             // Move to the next board cell
             currentBoardIndex++;
@@ -68,7 +145,7 @@ for (let i=1; i<5; i++){
             } else {
                 // Continue the game by calling colorCellAssign 
                 colorCellAssign();
-                checkFourColourRow();
+                //checkFourColourRow();
             }
 
             
@@ -78,7 +155,7 @@ for (let i=1; i<5; i++){
         
     }
     
-
+/*
     const checkFourColourRow = () => {
         if ($("#board0").attr("data-revealed")==="true"&&
         $("#board1").attr("data-revealed")==="true"&&
@@ -115,7 +192,7 @@ for (let i=1; i<5; i++){
         
         
     }
-    
+    */
     
     
     
