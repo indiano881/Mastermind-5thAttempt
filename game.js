@@ -62,7 +62,7 @@ for (let i=1; i<5; i++){
             console.log(currentBoardIndex);
 
             // Check for game completion 
-            if (currentBoardIndex > totalBoardAndPegCells) {
+            if (currentBoardIndex >= totalBoardAndPegCells) {
                 // Add logic for reaching the end of the board
                 console.log("Sorry you lost");
             } else {
@@ -83,39 +83,36 @@ for (let i=1; i<5; i++){
         if ($("#board0").attr("data-revealed")==="true"&&
         $("#board1").attr("data-revealed")==="true"&&
         $("#board2").attr("data-revealed")==="true"&&
-        $("#board3").attr("data-revealed")==="true") {
-            console.log("row one");
-        } else if ($("#board4").attr("data-revealed")==="true"&&
+        $("#board3").attr("data-revealed")==="true" ||
+        $("#board4").attr("data-revealed")==="true"&&
         $("#board5").attr("data-revealed")==="true"&&
         $("#board6").attr("data-revealed")==="true"&&
-        $("#board7").attr("data-revealed")==="true") {
-            console.log("row 2")
-        } else if ($("#board8").attr("data-revealed")==="true"&&
+        $("#board7").attr("data-revealed")==="true"||
+        $("#board8").attr("data-revealed")==="true"&&
         $("#board9").attr("data-revealed")==="true"&&
         $("#board10").attr("data-revealed")==="true"&&
-        $("#board11").attr("data-revealed")==="true") {
-            console.log("row 3");
-        } else if ($("#board12").attr("data-revealed")==="true"&&
+        $("#board11").attr("data-revealed")==="true"||
+        $("#board12").attr("data-revealed")==="true"&&
         $("#board13").attr("data-revealed")==="true"&&
         $("#board14").attr("data-revealed")==="true"&&
-        $("#board15").attr("data-revealed")==="true") {
-            console.log("row 4")
-        } else if ($("#board16").attr("data-revealed")==="true"&&
+        $("#board15").attr("data-revealed")==="true"||
+        $("#board16").attr("data-revealed")==="true"&&
         $("#board17").attr("data-revealed")==="true"&&
         $("#board18").attr("data-revealed")==="true"&&
-        $("#board19").attr("data-revealed")==="true") {
-            console.log("row 5")
-        } else if ($("#board20").attr("data-revealed")==="true"&&
+        $("#board19").attr("data-revealed")==="true"||
+        $("#board20").attr("data-revealed")==="true"&&
         $("#board21").attr("data-revealed")==="true"&&
         $("#board22").attr("data-revealed")==="true"&&
-        $("#board23").attr("data-revealed")==="true") {
-            console.log("row 6");
-        } else if ($("#board24").attr("data-revealed")==="true"&&
+        $("#board23").attr("data-revealed")==="true" ||
+        $("#board24").attr("data-revealed")==="true"&&
         $("#board25").attr("data-revealed")==="true"&&
         $("#board26").attr("data-revealed")==="true"&&
         $("#board27").attr("data-revealed")==="true") {
-            console.log("row 7")
+            console.log("it is a row");
+        } else {
+            console.log("it is not a row");
         }
+        
         
     }
     
