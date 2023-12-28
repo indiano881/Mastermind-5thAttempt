@@ -11,7 +11,7 @@ let totalBoardAndPegCells= 4*7; //4 color multipled 7 rows/possible in future to
 let currentBoardIndex=0;
 let userHasWon=false;
 let isItARow=false;
-
+//convert colors
 const colorMap = {
     "rgb(255, 255, 255)": "white",
     "rgb(255, 0, 0)": "red",
@@ -71,8 +71,8 @@ for (let i=1; i<5; i++){
 
             $(currentBoardId).attr("data-revealed", "true");
             //push 4 colors to arrayrow
-            usersColorsRow.push($(currentBoardId).css("background-color"));
-            console.log(usersColorsRow);
+            
+            
 
 
             //checking if it is a full 4 color row
@@ -91,10 +91,17 @@ for (let i=1; i<5; i++){
             if (isItARow) {
                 // Check if the user's guess matches the computer's color choice
                 let correctColors = 0;
-            
+
                 for (let i = 0; i < 4; i++) {
-                    if (usersColorsRow[i] === computerColourChoice[i]) {
-                        correctColors++;
+                // Get the RGB value from the user's guess
+                    let userColorRGB = $(`#board${currentBoardIndex - 4 + i}`).css("background-color");
+
+                    // Convert the RGB value to a color name
+                    let userColorName = colorMap[userColorRGB];
+                    usersColorsRow.push(userColorName);
+                    console.log(usersColorsRow)
+                    if (userColorName === computerColourChoice[i]) {
+                    correctColors++;
                     }
                 }
             
