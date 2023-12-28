@@ -12,7 +12,7 @@ let currentBoardIndex=0;
 let userHasWon=false;
 let isItARow=false;
 //convert colors
-const colorMap = {
+const colorTranslator = {
     "rgb(255, 255, 255)": "white",
     "rgb(255, 0, 0)": "red",
     "rgb(255, 165, 0)": "orange",
@@ -49,7 +49,7 @@ for (let i=1; i<5; i++){
     
     const colorCellAssign = () => {
 
-        let currentBoardId = "#board" + currentBoardIndex;
+        let currentBoardId = "#board" + currentBoardIndex;//inizia da 0
 
         // Add styling to the current board cell
         $(currentBoardId).css("transform", "scale(1.2)");
@@ -65,7 +65,7 @@ for (let i=1; i<5; i++){
                 return;
             }
 
-            let color = $(event.target).attr("data-color");
+            let color = $(event.target).attr("data-color");//necessario event target o sostituire con currentBoardId???
 
             $(currentBoardId).css("background-color", color);
 
@@ -87,6 +87,8 @@ for (let i=1; i<5; i++){
                     isItARow=true;
                 }
             }
+
+
             //caso che la row e´ completa
             if (isItARow) {
                 // Check if the user's guess matches the computer's color choice
@@ -94,10 +96,10 @@ for (let i=1; i<5; i++){
 
                 for (let i = 0; i < 4; i++) {
                 // Get the RGB value from the user's guess
-                    let userColorRGB = $(`#board${currentBoardIndex - 4 + i}`).css("background-color");
+                    let userColorRGB = $(`#board${currentBoardIndex - 3 + i}`).css("background-color");//da capire questa linea-capita CONVERTIRE CSS IN ATTRR DATA-COLOR???
 
                     // Convert the RGB value to a color name
-                    let userColorName = colorMap[userColorRGB];
+                    let userColorName = colorTranslator[userColorRGB];
                     usersColorsRow.push(userColorName);
                     console.log(usersColorsRow)
                     if (userColorName === computerColourChoice[i]) {
