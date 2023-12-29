@@ -120,8 +120,9 @@ const startNewGame = () => {
         computerColourChoice[i] = copy_COLOUR_DATABASE.splice(removeColourIndex, 1)[0];
     }
     console.log("the secret code is " + computerColourChoice.join(" "));
-    $(".board-cell").css("background-color", "").attr("data-revealed", "false");
+    $(".board-cell").css("background-color", "").css("border", "3px solid black").attr("data-revealed", "false");
     $(".peg-cell").css("background-color", "");
+    $("h1").text("Mastermind");
     $("h3").text("");
     
     game();
@@ -136,7 +137,7 @@ const game = () => {
     let currentBoardId = "#board" + currentBoardIndex;//inizia da 0
 
     // Add styling to the current board cell
-    $(currentBoardId).css("transform", "scale(1.2)");
+    
     $(currentBoardId).css("border", "5px solid black");
 
     // Handle click event for color assignment
