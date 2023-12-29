@@ -27,6 +27,22 @@ body {
 
 }
 
+.statistics-field {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: var(--terziary-color);
+    border: var(--border-tycker);
+    border-radius: 10px;
+    padding: var(--padding-main);
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.stat {
+    font-size: calc(1.5rem+1.5vw);
+    font-weight: bold;
+}
+
 header,
 footer {
     
