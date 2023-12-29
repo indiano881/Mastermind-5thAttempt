@@ -159,14 +159,7 @@ const game = () => {
                 // Reset the user's colors row
                 usersColorsRow = [];
             
-                // Reset the revealed status of the cells in the current row
-                for (let i = currentBoardIndex - 4; i < currentBoardIndex; i++) {
-                    $(`#board${i}`).attr("data-revealed", "false");
-                }
-            
-                // Reset the current board index
-                currentBoardIndex -= 4;
-                isItARow = false;
+              
             
                 // Check for the game-winning condition
                 if (userHasWon) {
