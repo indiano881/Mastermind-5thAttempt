@@ -1,6 +1,5 @@
 $(()=>{
 
-
 //arrays    
 const COLOUR_DATABASE = ["red","orange","yellow","green","blue","purple","pink","brown","aqua"];
 let copy_COLOUR_DATABASE = Array.from(COLOUR_DATABASE);
@@ -42,50 +41,34 @@ for(let i=0; i<totalBoardAndPegCells; i++) {
 //FUNCTIONS
 //assigning colors to secret combination so that user can visualize them
 const showSecretCode = () => {
-    for (let i=1; i<5; i++){
+    for (let i=1; i<5; i++) {
         $(".secret-color"+i).attr("data-color", computerColourChoice[i-1]);
         $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);
-        
     }
+}
 
-}
-//checking if it is a full 4 color row
-const isFullRow = () => {
-    
-    for (let i=0; i<totalBoardAndPegCells; i++) {
-        if ($("#board3").attr("data-revealed")==="true"||
-        $("#board7").attr("data-revealed")==="true"||
-        $("#board11").attr("data-revealed")==="true"||
-        $("#board15").attr("data-revealed")==="true"||
-        $("#board19").attr("data-revealed")==="true"||
-        $("#board23").attr("data-revealed")==="true"||
-        $("#board27").attr("data-revealed")==="true") {
-           return isItARow=true;
-        }
-    }
-}
 //calculates which row is
 const rowNumberCalculator = () => {
     if ($("#board27").attr("data-revealed")==="true") {
-        return rowNumber=7;
+        return rowNumber=7, isItARow=true;
 
     } else if ($("#board23").attr("data-revealed")==="true") {
-        return rowNumber=6;
+        return rowNumber=6, isItARow=true;
 
     } else if ($("#board19").attr("data-revealed")==="true") {
-        return rowNumber=5;
+        return rowNumber=5, isItARow=true;
 
     } else if ($("#board15").attr("data-revealed")==="true") {
-        return rowNumber=4;
+        return rowNumber=4, isItARow=true;
 
     } else if ($("#board11").attr("data-revealed")==="true") {
-        return rowNumber=3;
+        return rowNumber=3, isItARow=true;
 
     } else  if ($("#board7").attr("data-revealed")==="true") {
-        return rowNumber=2;
+        return rowNumber=2, isItARow=true;
 
     } else if ($("#board3").attr("data-revealed")==="true") {
-        return rowNumber=1;
+        return rowNumber=1, isItARow=true;
     }
 }
 
@@ -139,7 +122,7 @@ const startNewGame = () => {
     console.log("the secret code is " + computerColourChoice.join(" "));
     $(".board-cell").css("background-color", "").attr("data-revealed", "false");
     $(".peg-cell").css("background-color", "");
-    $(".pegs h3").text("");
+    $(".h3").text("");
     
     game();
 }
@@ -173,8 +156,7 @@ const game = () => {
     $(currentBoardId).css("background-color", color);
     $(currentBoardId).attr("data-revealed", "true");
 
-    //checking if it is a full 4 color row
-    isFullRow();   
+    //checking if it is a full 4 color row  
     rowNumberCalculator();
     console.log("row number is "+rowNumber);
 //********** *//FINO A QUI FUNZIONA BENE-CONTINUARE A DIVIDERE PER FUNZIONI
@@ -238,11 +220,11 @@ $(".instructions").click(() => {
 
 /*
 COME PROSEGUIRE:
-Assegnare pegs
+Assegnare pegs-convertitre con boreder color in base match
+if attempt%4=0 show message????
 
 DA RIFINIRE ALLA FINE
 inserire timer?
 inserire statistiche
-sistemare bottoni
-sistemare pc e tablet
+
 */
