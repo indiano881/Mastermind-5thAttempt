@@ -122,7 +122,7 @@ const startNewGame = () => {
     console.log("the secret code is " + computerColourChoice.join(" "));
     $(".board-cell").css("background-color", "").attr("data-revealed", "false");
     $(".peg-cell").css("background-color", "");
-    $(".h3").text("");
+    $("h3").text("");
     
     game();
 }
