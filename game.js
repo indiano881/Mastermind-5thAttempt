@@ -28,12 +28,6 @@ const colorTranslator = {
     "rgb(0, 255, 255)": "aqua"
 };
 
-//Computer colour array generator
-for (let i = 0; i < computerColourChoice.length; i++) {
-    let removeColourIndex = Math.floor(Math.random() * copy_COLOUR_DATABASE.length);
-    computerColourChoice[i] = copy_COLOUR_DATABASE.splice(removeColourIndex, 1)[0];
-}
-console.log("the secret code is " +computerColourChoice.join(" "))
 
 //create boards cells-
 for(let i=0; i<totalBoardAndPegCells; i++) {
@@ -97,7 +91,7 @@ const rowNumberCalculator = () => {
 }
 
 // check Win or Loss
- const checkWinOrLoss = () => {
+const checkWinOrLoss = () => {
 
     //Victory
     if (correctColors === 4) {
@@ -122,7 +116,34 @@ const rowNumberCalculator = () => {
         game();
     }
 
- }
+}
+
+const startNewGame = () => {
+    // Reset the game var+block all clicliking funct
+    gameOver = false;
+    $(".box").off(); 
+    $(".new-game").off(); 
+    $(".box").on("click", game);
+    $(".new-game").on("click", startNewGame);
+    currentBoardIndex = 0;
+    correctColors = 0;
+    correctButWrongPositionColors = 0;
+    isItARow = false;
+    usersColorsRow = [];
+    computerColourChoice = [];
+   
+    //Computer colour array generator
+    for (let i = 0; i < 4; i++) {
+        let removeColourIndex = Math.floor(Math.random() * copy_COLOUR_DATABASE.length);
+        computerColourChoice[i] = copy_COLOUR_DATABASE.splice(removeColourIndex, 1)[0];
+    }
+    console.log("the secret code is " + computerColourChoice.join(" "));
+    $(".board-cell").css("background-color", "").attr("data-revealed", "false");
+    $(".peg-cell").css("background-color", "");
+    $(".pegs h3").text("");
+    
+    game();
+};
 
 
 
@@ -205,14 +226,12 @@ const game = () => {
 
 $(".new-game").click(()=> {
     gameOver =false;
-    game();
+    startNewGame();
 }
 );
 
 $(".instructions").click(() => {
-
     $("h4").text("Guess the 4 colours the computer has choosen. \nThe colours choosen by the computer will be ALL different");
-
 })
 
 
