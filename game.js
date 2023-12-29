@@ -11,6 +11,7 @@ let currentBoardIndex=0;
 let userHasWon=false;
 let isItARow=false;
 let rowNumber;
+let correctColors = 0;
 //convert colors
 const colorTranslator = {
     "rgb(255, 255, 255)": "white",
@@ -30,12 +31,8 @@ for (let i = 0; i < computerColourChoice.length; i++) {
     let removeColourIndex = Math.floor(Math.random() * copy_COLOUR_DATABASE.length);
     computerColourChoice[i] = copy_COLOUR_DATABASE.splice(removeColourIndex, 1)[0];
 }
-//assigning secret combination to visualization
-for (let i=1; i<5; i++){
-    $(".secret-color"+i).attr("data-color", computerColourChoice[i-1]);
-    $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);//se vinci si visualizzano colori da sistemare dopo+muoivere tutto for loop???
+console.log("the secret code is " +computerColourChoice.join(" "))
 
-}
 //create boards cells-
 for(let i=0; i<totalBoardAndPegCells; i++) {
     let cell = "<div class=\"board-cell\" id=board"+i+" data-revealed=\"false\"></div>";
@@ -64,7 +61,7 @@ const isFullRow = () => {
     }
 }
 //calculates which row is
- const rowNumberCalculator = () => {
+const rowNumberCalculator = () => {
     if ($("#board27").attr("data-revealed")==="true") {
         return rowNumber=7;
 
@@ -85,6 +82,24 @@ const isFullRow = () => {
 
     } else if ($("#board3").attr("data-revealed")==="true") {
         return rowNumber=1;
+    }
+}
+
+// check Win or Loss
+ const checkWinOrLoss = () => {
+    // Handle the result based on the number of correct colors
+    if (correctColors === 4) {
+        console.log("Congratulations! You guessed the correct combination!");
+        userHasWon = true;
+        //assigning secret combination to visualization
+        for (let i=1; i<5; i++){
+            $(".secret-color"+i).attr("data-color", computerColourChoice[i-1]);
+            $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);//se vinci si visualizzano colori da sistemare dopo+muoivere tutto for loop???
+}
+        
+    } else {
+        // Provide feedback or take appropriate actions
+        console.log(`You have ${correctColors} correct color(s). Keep trying!`);
     }
 
  }
@@ -123,11 +138,11 @@ const game = () => {
     //caso che la row e´ completa
     if (isItARow) {
         // Check if the user's guess matches the computer's color choice
-        let correctColors = 0;
+        correctColors = 0;
 
         for (let i = 0; i < 4; i++) {
         // Get the RGB value from the user's guess
-            let userColorRGB = $(`#board${currentBoardIndex - 3 + i}`).css("background-color");//da capire questa linea-capita CONVERTIRE CSS IN ATTRR DATA-COLOR???
+            let userColorRGB = $(`#board${currentBoardIndex - 3 + i}`).css("background-color");
 
             // Convert the RGB value to a color name
             let userColorName = colorTranslator[userColorRGB];
@@ -138,92 +153,53 @@ const game = () => {
             if (userColorName === computerColourChoice[i]) {
                         
                 correctColors++;
-                }/* else if (userColorName.includes(computerColourChoice[i])) {//cercare soluzione a incluides
-                        console.log(computerColourChoice[i]+ "is present");
-            }*/
-
-
-
+                }
         }
             
-                // Handle the result based on the number of correct colors
-                if (correctColors === 4) {
-                    // All colors are correct - user wins
-                    console.log("Congratulations! You guessed the correct combination!");
-                    userHasWon = true;
-                } else {
-                    // Provide feedback or take appropriate actions
-                    console.log(`You have ${correctColors} correct color(s). Keep trying!`);
-                }
+        checkWinOrLoss();
             
-                // Reset the user's colors row
-                usersColorsRow = [];
-            
+        // Reset the user's colors row
+        usersColorsRow = [];
               
-            
-                // Check for the game-winning condition
-                if (userHasWon) {
-                    // Handle the game-winning scenario
-                    console.log("Game over. You win!");
-                } else {
-                    // Move to the next row
-                    console.log("Move to the next row");
-                }
-            }
-            
-
-
-
-            // Move to the next board cell
-            currentBoardIndex++;
-
-            console.log(currentBoardIndex);
-
-            // Check for game completion 
-            if (currentBoardIndex >= totalBoardAndPegCells) {
-                // Add logic for reaching the end of the board
-                console.log("Sorry you lost");
-            } else {
-                // Continue the game by calling colorCellAssign 
-                game();
-                //checkFourColourRow();
-            }
-
-            
-        })
-
-
-        
     }
+            
+    // Move to the next board cell
+    currentBoardIndex++;
+
+    console.log(currentBoardIndex);
+
+    // Check for game completion 
+    if (currentBoardIndex >= totalBoardAndPegCells) {
+        // Add logic for reaching the end of the board
+        console.log("Sorry you lost");
+        } else {
+        // Continue the game by calling colorCellAssign 
+        game();
+        //checkFourColourRow();
+        }
+
+    })//end of $(".box").on("click")
+
+}//end of function game ();
     
 
-    
-    
 
 
+$(".start-game").click(()=>game());
 
+$(".instructions").click(() => {
 
+    $("h4").text("Guess the 4 colours the computer has choosen. \nThe colours choosen by the computer will be ALL different");
 
-
-
-    $(".start-game").click(()=>game());
-    $(".instructions").click(() => {
-        $("h4").text("Guess the 4 colours the computer has choosen. \nThe colours choosen by the computer will be ALL different");
-    })
+})
 
 
 })
 
 /*
 COME PROSEGUIRE:
-sviluppare gioco, la casella deve essere zoomata. 
-quandoc clicchi il colore si assegna e si sposta alla casella dopo.
-ogni 4 cé il check(fare dopo per ultimo)
-
-
-
-
-
+Assegnare pegs
+sistemare vittoria sconfitta
 
 DA RIFINIRE ALLA FINE
 inserire timer?
