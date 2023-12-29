@@ -87,15 +87,22 @@ const rowNumberCalculator = () => {
 
 // check Win or Loss
  const checkWinOrLoss = () => {
-    // Handle the result based on the number of correct colors
+
+    //Victory
     if (correctColors === 4) {
         console.log("Congratulations! You guessed the correct combination!");
         userHasWon = true;
-        //assigning secret combination to visualization
+        $("h1").text("You won!");
+        $("h3").text("press new game or continue session");
+        $(".box").off();
+        $(".continue-session").on("click", () => window.history.back());
+
+        //assigning colors to secret combination so that user can visualize them
         for (let i=1; i<5; i++){
             $(".secret-color"+i).attr("data-color", computerColourChoice[i-1]);
-            $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);//se vinci si visualizzano colori da sistemare dopo+muoivere tutto for loop???
-}
+            $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);
+            
+        }
         
     } else {
         // Provide feedback or take appropriate actions
@@ -185,7 +192,7 @@ const game = () => {
 
 
 
-$(".start-game").click(()=>game());
+$(".new-game").click(()=>game());
 
 $(".instructions").click(() => {
 
