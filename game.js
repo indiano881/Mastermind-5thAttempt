@@ -46,6 +46,12 @@ const showSecretCode = () => {
         $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);
     }
 }
+const hideSecretCode = () => {
+    for (let i=1; i<5; i++) {
+        $(".secret-color"+i).attr("data-color", "black");
+        $(".secret-color"+i).css("background-color", "black");
+    }
+}
 
 //calculates which row is
 const rowNumberCalculator = () => {
@@ -124,7 +130,7 @@ const startNewGame = () => {
     $(".peg-cell").css("background-color", "");
     $("h1").text("Mastermind");
     $("h3").text("");
-    
+    hideSecretCode();
     game();
 }
 
