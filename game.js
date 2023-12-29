@@ -12,6 +12,7 @@ let userHasWon=false;
 let isItARow=false;
 let rowNumber;
 let correctColors = 0;
+let correctButWrongPositionColors=0;
 //convert colors
 const colorTranslator = {
     "rgb(255, 255, 255)": "white",
@@ -45,6 +46,15 @@ for(let i=0; i<totalBoardAndPegCells; i++) {
 
 
 //FUNCTIONS
+//assigning colors to secret combination so that user can visualize them
+const showSecretCode = () => {
+    for (let i=1; i<5; i++){
+        $(".secret-color"+i).attr("data-color", computerColourChoice[i-1]);
+        $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);
+        
+    }
+
+}
 //checking if it is a full 4 color row
 const isFullRow = () => {
     
@@ -93,20 +103,20 @@ const rowNumberCalculator = () => {
         console.log("Congratulations! You guessed the correct combination!");
         userHasWon = true;
         $("h1").text("You won!");
-        $("h3").text("press new game or continue session");
+        $("h3").text("Win-press new game or continue session");
         $(".box").off();
         $(".continue-session").on("click", () => window.history.back());
-
-        //assigning colors to secret combination so that user can visualize them
-        for (let i=1; i<5; i++){
-            $(".secret-color"+i).attr("data-color", computerColourChoice[i-1]);
-            $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);
-            
-        }
+        showSecretCode();
         
+    } else if (currentBoardIndex ===totalBoardAndPegCells) {
+            
+            $("h3").text("Sorry you lost");
+            showSecretCode();
     } else {
-        // Provide feedback or take appropriate actions
-        console.log(`You have ${correctColors} correct color(s). Keep trying!`);
+        
+        console.log(`You have ${correctColors} correct color(s).`);
+        console.log(`You have ${correctButWrongPositionColors} color(s) but in WRONG POSITION.`);
+        game();
     }
 
  }
@@ -146,6 +156,7 @@ const game = () => {
     if (isItARow) {
         // Check if the user's guess matches the computer's color choice
         correctColors = 0;
+        correctButWrongPositionColors=0;
 
         for (let i = 0; i < 4; i++) {
         // Get the RGB value from the user's guess
@@ -160,10 +171,12 @@ const game = () => {
             if (userColorName === computerColourChoice[i]) {
                         
                 correctColors++;
+                } else if (computerColourChoice.includes(userColorName)) {
+                    correctButWrongPositionColors++;
                 }
         }
             
-        checkWinOrLoss();
+        
             
         // Reset the user's colors row
         usersColorsRow = [];
@@ -174,16 +187,8 @@ const game = () => {
     currentBoardIndex++;
 
     console.log(currentBoardIndex);
-
-    // Check for game completion 
-    if (currentBoardIndex >= totalBoardAndPegCells) {
-        // Add logic for reaching the end of the board
-        console.log("Sorry you lost");
-        } else {
-        // Continue the game by calling colorCellAssign 
-        game();
-        //checkFourColourRow();
-        }
+    checkWinOrLoss();
+   
 
     })//end of $(".box").on("click")
 
