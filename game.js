@@ -10,6 +10,7 @@ let totalBoardAndPegCells= 4*7; //4 color multipled 7 rows/possible in future to
 let currentBoardIndex=0;
 let userHasWon=false;
 let isItARow=false;
+let rowNumber;
 //convert colors
 const colorTranslator = {
     "rgb(255, 255, 255)": "white",
@@ -62,6 +63,31 @@ const isFullRow = () => {
         }
     }
 }
+//calculates which row is
+ const rowNumberCalculator = () => {
+    if ($("#board27").attr("data-revealed")==="true") {
+        return rowNumber=7;
+
+    } else if ($("#board23").attr("data-revealed")==="true") {
+        return rowNumber=6;
+
+    } else if ($("#board19").attr("data-revealed")==="true") {
+        return rowNumber=5;
+
+    } else if ($("#board15").attr("data-revealed")==="true") {
+        return rowNumber=4;
+
+    } else if ($("#board11").attr("data-revealed")==="true") {
+        return rowNumber=3;
+
+    } else  if ($("#board7").attr("data-revealed")==="true") {
+        return rowNumber=2;
+
+    } else if ($("#board3").attr("data-revealed")==="true") {
+        return rowNumber=1;
+    }
+
+ }
 
 
 
@@ -91,33 +117,34 @@ const game = () => {
 
     //checking if it is a full 4 color row
     isFullRow();   
+    rowNumberCalculator();
+    console.log("row number is "+rowNumber);
+//********** *//FINO A QUI FUNZIONA BENE-CONTINUARE A DIVIDERE PER FUNZIONI
+    //caso che la row e´ completa
+    if (isItARow) {
+        // Check if the user's guess matches the computer's color choice
+        let correctColors = 0;
 
+        for (let i = 0; i < 4; i++) {
+        // Get the RGB value from the user's guess
+            let userColorRGB = $(`#board${currentBoardIndex - 3 + i}`).css("background-color");//da capire questa linea-capita CONVERTIRE CSS IN ATTRR DATA-COLOR???
 
-            //caso che la row e´ completa
-            if (isItARow) {
-                // Check if the user's guess matches the computer's color choice
-                let correctColors = 0;
+            // Convert the RGB value to a color name
+            let userColorName = colorTranslator[userColorRGB];
+            usersColorsRow.push(userColorName);
+            console.log(usersColorsRow)
 
-                for (let i = 0; i < 4; i++) {
-                // Get the RGB value from the user's guess
-                    let userColorRGB = $(`#board${currentBoardIndex - 3 + i}`).css("background-color");//da capire questa linea-capita CONVERTIRE CSS IN ATTRR DATA-COLOR???
-
-                    // Convert the RGB value to a color name
-                    let userColorName = colorTranslator[userColorRGB];
-                    usersColorsRow.push(userColorName);
-                    console.log(usersColorsRow)
-
-//sviluppare da qui
-                    if (userColorName === computerColourChoice[i]) {
+//************//sviluppare da qui
+            if (userColorName === computerColourChoice[i]) {
                         
-                    correctColors++;
-                    }/* else if (userColorName.includes(computerColourChoice[i])) {//cercare soluzione a incluides
+                correctColors++;
+                }/* else if (userColorName.includes(computerColourChoice[i])) {//cercare soluzione a incluides
                         console.log(computerColourChoice[i]+ "is present");
-                    }*/
+            }*/
 
 
 
-                }
+        }
             
                 // Handle the result based on the number of correct colors
                 if (correctColors === 4) {
