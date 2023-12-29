@@ -45,47 +45,52 @@ for(let i=0; i<totalBoardAndPegCells; i++) {
     $(".pegs").append(cell);
 }
 
-//functions click color assign to board cell
-    const game = () => {
 
-        let currentBoardId = "#board" + currentBoardIndex;//inizia da 0
+//FUNCTIONS
+//checking if it is a full 4 color row
+const isFullRow = () => {
+    
+    for (let i=0; i<totalBoardAndPegCells; i++) {
+        if ($("#board3").attr("data-revealed")==="true"||
+        $("#board7").attr("data-revealed")==="true"||
+        $("#board11").attr("data-revealed")==="true"||
+        $("#board15").attr("data-revealed")==="true"||
+        $("#board19").attr("data-revealed")==="true"||
+        $("#board23").attr("data-revealed")==="true"||
+        $("#board27").attr("data-revealed")==="true") {
+           return isItARow=true;
+        }
+    }
+}
 
-        // Add styling to the current board cell
-        $(currentBoardId).css("transform", "scale(1.2)");
-        $(currentBoardId).css("border", "5px solid black");
 
-        // Handle click event for color assignment
-        $(".box").on("click", event => {
 
-            let revealed= $(currentBoardId).attr("data-revealed");
+
+//Main game functions
+const game = () => {
+
+    let currentBoardId = "#board" + currentBoardIndex;//inizia da 0
+
+    // Add styling to the current board cell
+    $(currentBoardId).css("transform", "scale(1.2)");
+    $(currentBoardId).css("border", "5px solid black");
+
+    // Handle click event for color assignment
+    $(".box").on("click", event => {
+
+    let revealed= $(currentBoardId).attr("data-revealed");
             
-            if (revealed==="true" ) {
+    if (revealed==="true" ) {
                 
-                return;
-            }
+            return;
+    }
+    //get attribute data color from the click and put same color as background color- convert data-revealed from false to true
+    let color = $(event.target).attr("data-color");
+    $(currentBoardId).css("background-color", color);
+    $(currentBoardId).attr("data-revealed", "true");
 
-            let color = $(event.target).attr("data-color");//necessario event target o sostituire con currentBoardId???
-
-            $(currentBoardId).css("background-color", color);
-
-            $(currentBoardId).attr("data-revealed", "true");
-            //push 4 colors to arrayrow
-            
-            
-
-
-            //checking if it is a full 4 color row
-            for (let i=0; i<totalBoardAndPegCells; i++) {
-                if ($("#board3").attr("data-revealed")==="true"||
-                $("#board7").attr("data-revealed")==="true"||
-                $("#board11").attr("data-revealed")==="true"||
-                $("#board15").attr("data-revealed")==="true"||
-                $("#board19").attr("data-revealed")==="true"||
-                $("#board23").attr("data-revealed")==="true"||
-                $("#board27").attr("data-revealed")==="true") {
-                    isItARow=true;
-                }
-            }
+    //checking if it is a full 4 color row
+    isFullRow();   
 
 
             //caso che la row e´ completa
