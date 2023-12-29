@@ -56,7 +56,7 @@ section {
 .buttons-field {
     align-items: center;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     font-size: calc( 1.5rem + 1.5vw);
 }
 
@@ -130,9 +130,6 @@ button:hover {
     min-width: 25px;
 }
 
-
-
-
 .solution-code {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -186,7 +183,7 @@ button:hover {
     .buttons-field {
         align-items: center;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         font-size: calc( 1.5rem + 1.5vw);
     }
     
@@ -194,14 +191,7 @@ button:hover {
         min-height: 90px;
         max-width: 200px;
     }
-    .messages-field {
-        margin-left: 150px;
-        margin-right: 150px;
-    }
-
-    .message-one {
-        font-size: 2rem; 
-    }
+   
 }
 
 @media screen and (min-width: 1024px) {
@@ -211,12 +201,7 @@ button:hover {
         min-height: 100px;
         max-width: 300px;
     }
-    .messages-field {
-        margin-left: 300px;
-        margin-right: 300px;
-    }
+   
 
-    .message-one {
-        font-size: 2.5rem; 
-    }
+   
 }

@@ -8,7 +8,6 @@ let computerColourChoice = new Array (4);
 let usersColorsRow = [];
 let totalBoardAndPegCells= 4*7; //4 color multipled 7 rows/possible in future to change rows with a var according to level difficulties
 let currentBoardIndex=0;
-let userHasWon=false;
 let isItARow=false;
 let rowNumber;
 let correctColors = 0;
@@ -96,7 +95,7 @@ const checkWinOrLoss = () => {
     //Victory
     if (correctColors === 4) {
         console.log("Congratulations! You guessed the correct combination!");
-        userHasWon = true;
+        
         $("h1").text("You won!");
         $("h3").text("Win-press new game or continue session");
         $(".box").off();
@@ -143,7 +142,7 @@ const startNewGame = () => {
     $(".pegs h3").text("");
     
     game();
-};
+}
 
 
 
