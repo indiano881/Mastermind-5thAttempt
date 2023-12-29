@@ -13,6 +13,7 @@ let isItARow=false;
 let rowNumber;
 let correctColors = 0;
 let correctButWrongPositionColors=0;
+let gameOver=false;
 //convert colors
 const colorTranslator = {
     "rgb(255, 255, 255)": "white",
@@ -107,11 +108,13 @@ const rowNumberCalculator = () => {
         $(".box").off();
         $(".continue-session").on("click", () => window.history.back());
         showSecretCode();
+        gameOver=true;
         
     } else if (currentBoardIndex ===totalBoardAndPegCells) {
             
             $("h3").text("Sorry you lost");
             showSecretCode();
+            gameOver=true;
     } else {
         
         console.log(`You have ${correctColors} correct color(s).`);
@@ -135,6 +138,9 @@ const game = () => {
 
     // Handle click event for color assignment
     $(".box").on("click", event => {
+        if (gameOver) {
+            return; 
+        }
 
     let revealed= $(currentBoardId).attr("data-revealed");
             
@@ -197,7 +203,11 @@ const game = () => {
 
 
 
-$(".new-game").click(()=>game());
+$(".new-game").click(()=> {
+    gameOver =false;
+    game();
+}
+);
 
 $(".instructions").click(() => {
 
@@ -211,7 +221,6 @@ $(".instructions").click(() => {
 /*
 COME PROSEGUIRE:
 Assegnare pegs
-sistemare vittoria sconfitta
 
 DA RIFINIRE ALLA FINE
 inserire timer?
