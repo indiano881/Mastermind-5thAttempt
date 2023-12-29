@@ -6,7 +6,6 @@ const COLOUR_DATABASE = ["red","orange","yellow","green","blue","purple","pink",
 let copy_COLOUR_DATABASE = Array.from(COLOUR_DATABASE);
 let computerColourChoice = new Array (4);
 let usersColorsRow = [];
-let removeColourIndex;
 let totalBoardAndPegCells= 4*7; //4 color multipled 7 rows/possible in future to change rows with a var according to level difficulties
 let currentBoardIndex=0;
 let userHasWon=false;
@@ -27,27 +26,27 @@ const colorTranslator = {
 
 //Computer colour array generator
 for (let i = 0; i < computerColourChoice.length; i++) {
-    removeColourIndex = Math.floor(Math.random() * copy_COLOUR_DATABASE.length);
+    let removeColourIndex = Math.floor(Math.random() * copy_COLOUR_DATABASE.length);
     computerColourChoice[i] = copy_COLOUR_DATABASE.splice(removeColourIndex, 1)[0];
 }
 //assigning secret combination to visualization
 for (let i=1; i<5; i++){
     $(".secret-color"+i).attr("data-color", computerColourChoice[i-1]);
-    $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);//se vinci si visualizzano colori da sistemare dopo
+    $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);//se vinci si visualizzano colori da sistemare dopo+muoivere tutto for loop???
 
 }
 //create boards cells-
-    for(let i=0; i<totalBoardAndPegCells; i++) {
-        let cell = "<div class=\"board-cell\" id=board"+i+" data-revealed=\"false\"></div>";
-        $(".board").append(cell);
-    }
-    for(let i=0; i<totalBoardAndPegCells; i++) {
-        let cell = "<div class=\"peg-cell\" id=peg"+i+"></div>";
-        $(".pegs").append(cell);
-    }
+for(let i=0; i<totalBoardAndPegCells; i++) {
+    let cell = "<div class=\"board-cell\" id=board"+i+" data-revealed=\"false\"></div>";
+    $(".board").append(cell);
+}
+for(let i=0; i<totalBoardAndPegCells; i++) {
+    let cell = "<div class=\"peg-cell\" id=peg"+i+"></div>";
+    $(".pegs").append(cell);
+}
 
-    
-    const colorCellAssign = () => {
+//functions click color assign to board cell
+    const game = () => {
 
         let currentBoardId = "#board" + currentBoardIndex;//inizia da 0
 
@@ -102,9 +101,17 @@ for (let i=1; i<5; i++){
                     let userColorName = colorTranslator[userColorRGB];
                     usersColorsRow.push(userColorName);
                     console.log(usersColorsRow)
+
+//sviluppare da qui
                     if (userColorName === computerColourChoice[i]) {
+                        
                     correctColors++;
-                    }
+                    }/* else if (userColorName.includes(computerColourChoice[i])) {//cercare soluzione a incluides
+                        console.log(computerColourChoice[i]+ "is present");
+                    }*/
+
+
+
                 }
             
                 // Handle the result based on the number of correct colors
@@ -153,7 +160,7 @@ for (let i=1; i<5; i++){
                 console.log("Sorry you lost");
             } else {
                 // Continue the game by calling colorCellAssign 
-                colorCellAssign();
+                game();
                 //checkFourColourRow();
             }
 
@@ -164,54 +171,8 @@ for (let i=1; i<5; i++){
         
     }
     
-/*
-    const checkFourColourRow = () => {
-        if ($("#board0").attr("data-revealed")==="true"&&
-        $("#board1").attr("data-revealed")==="true"&&
-        $("#board2").attr("data-revealed")==="true"&&
-        $("#board3").attr("data-revealed")==="true" ||
-        $("#board4").attr("data-revealed")==="true"&&
-        $("#board5").attr("data-revealed")==="true"&&
-        $("#board6").attr("data-revealed")==="true"&&
-        $("#board7").attr("data-revealed")==="true"||
-        $("#board8").attr("data-revealed")==="true"&&
-        $("#board9").attr("data-revealed")==="true"&&
-        $("#board10").attr("data-revealed")==="true"&&
-        $("#board11").attr("data-revealed")==="true"||
-        $("#board12").attr("data-revealed")==="true"&&
-        $("#board13").attr("data-revealed")==="true"&&
-        $("#board14").attr("data-revealed")==="true"&&
-        $("#board15").attr("data-revealed")==="true"||
-        $("#board16").attr("data-revealed")==="true"&&
-        $("#board17").attr("data-revealed")==="true"&&
-        $("#board18").attr("data-revealed")==="true"&&
-        $("#board19").attr("data-revealed")==="true"||
-        $("#board20").attr("data-revealed")==="true"&&
-        $("#board21").attr("data-revealed")==="true"&&
-        $("#board22").attr("data-revealed")==="true"&&
-        $("#board23").attr("data-revealed")==="true" ||
-        $("#board24").attr("data-revealed")==="true"&&
-        $("#board25").attr("data-revealed")==="true"&&
-        $("#board26").attr("data-revealed")==="true"&&
-        $("#board27").attr("data-revealed")==="true") {
-            console.log("it is a row");
-        } else {
-            console.log("it is not a row");
-        }
-        
-        
-    }
-    */
+
     
-    
-    
-  
-
-
-
-
-
-
     
 
 
@@ -219,7 +180,8 @@ for (let i=1; i<5; i++){
 
 
 
-    $(".start-game").click(()=>colorCellAssign());
+
+    $(".start-game").click(()=>game());
     $(".instructions").click(() => {
         $("h4").text("Guess the 4 colours the computer has choosen. \nThe colours choosen by the computer will be ALL different");
     })
