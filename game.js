@@ -208,16 +208,30 @@ const game = () => {
             console.log(usersColorsRow)
 
 //************//sviluppare da qui
-            if (userColorName === computerColourChoice[i]) {
+            if (usersColorsRow[i] === computerColourChoice[i]) {
                         
                 correctColors++;
-                } else if (computerColourChoice.includes(userColorName)) {
+
+                let pegId = "#peg" + (i);
+                $(pegId).css("background-color", "green");
+
+                } else if (computerColourChoice.includes(usersColorsRow[i])) {
                     correctButWrongPositionColors++;
+
+                    let pegId = "#peg" + (i);
+                    $(pegId).css("background-color", "grey");
                 }
         }
-        updatePegCells();
-        //area dedicata a peg cells
-            
+        
+        /*area dedicata a peg cells
+        for (let i = 0; i < totalBoardAndPegCells; i++) {
+            let pegId = "#peg" + (i);
+
+
+
+            $(pegId).css("background-color", "green");
+        }
+*/
 
 
 
@@ -227,8 +241,6 @@ const game = () => {
 
 
 
-
-        //area dedicata a peg cells
         // Reset the user's colors row
         usersColorsRow = [];
               
