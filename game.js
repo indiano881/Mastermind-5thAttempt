@@ -12,6 +12,11 @@ let rowNumber;
 let correctColors = 0;
 let correctButWrongPositionColors=0;
 let gameOver=false;
+
+//Statistics variables
+let totalGames=0;
+let totalWins=0;
+let totalLosses=0;
 //convert colors
 const colorTranslator = {
     "rgb(255, 255, 255)": "white",
@@ -91,12 +96,13 @@ const checkWinOrLoss = () => {
         $(".continue-session").on("click", () => window.history.back());
         showSecretCode();
         gameOver=true;
-        
+        totalWins++;
     } else if (currentBoardIndex ===totalBoardAndPegCells) {
             
             $("h3").text("Sorry you lost");
             showSecretCode();
             gameOver=true;
+            totalLosses++;
     } else {
         
         console.log(`You have ${correctColors} correct color(s).`);
@@ -105,8 +111,16 @@ const checkWinOrLoss = () => {
     }
 
 }
+//Update statistics
+const statisticsUpdates = () => {
+    $(".stat.games").text("Games: "+ totalGames);
+    $(".stat.wins").text("Wins: "+ totalWins);
+    $(".stat.losses").text("Losses: "+ totalLosses);
+}
 
 const startNewGame = () => {
+    totalGames++;
+    statisticsUpdates();
     // Reset the game var+block all clicliking funct
     gameOver = false;
     $(".box").off(); 
@@ -139,7 +153,7 @@ const startNewGame = () => {
 
 //Main game functions
 const game = () => {
-
+    
     let currentBoardId = "#board" + currentBoardIndex;//inizia da 0
 
     // Add styling to the current board cell
@@ -213,13 +227,22 @@ const game = () => {
 
 
 $(".new-game").click(()=> {
+    //reset all statistics
+    totalGames=0;
+    totalWins=0;
+    totalLosses=0;
+
     gameOver =false;
     startNewGame();
-}
-);
+})
+
+$(".continue-session").click(()=> {
+    gameOver =false;
+    startNewGame();
+})
 
 $(".instructions").click(() => {
-    $("h4").text("Guess the 4 colours the computer has choosen. \nThe colours choosen by the computer will be ALL different");
+    $("h3").text("Guess the 4 colours the computer has choosen. \nThe colours choosen by the computer will be ALL different");
 })
 
 
@@ -232,6 +255,6 @@ if attempt%4=0 show message????
 
 DA RIFINIRE ALLA FINE
 inserire timer?
-inserire statistiche
+
 
 */
