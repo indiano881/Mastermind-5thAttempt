@@ -88,12 +88,11 @@ const checkWinOrLoss = () => {
 
     //Victory
     if (correctColors === 4) {
-        console.log("Congratulations! You guessed the correct combination!");
         
         $("h1").text("You won!");
         $("h3").text("Win-press new game or continue session");
         $(".box").off();
-        $(".continue-session").on("click", () => window.history.back());
+        
         showSecretCode();
         gameOver=true;
         totalWins++;
@@ -207,7 +206,7 @@ const game = () => {
             usersColorsRow.push(userColorName);
             console.log(usersColorsRow)
 
-//************//sviluppare da qui
+//************//sviluppare da qui 
             if (usersColorsRow[i] === computerColourChoice[i]) {
                         
                 correctColors++;
