@@ -92,20 +92,21 @@ const checkWinOrLoss = () => {
         $("h1").text("You won!");
         $("h3").text("Win-press new game or continue session");
         $(".box").off();
-        
         showSecretCode();
         gameOver=true;
         totalWins++;
+
     } else if (currentBoardIndex ===totalBoardAndPegCells) {
             
             $("h3").text("Sorry you lost");
             showSecretCode();
             gameOver=true;
             totalLosses++;
+
     } else {
         
-        console.log(`You have ${correctColors} correct color(s).`);
-        console.log(`You have ${correctButWrongPositionColors} color(s) but in WRONG POSITION.`);
+        console.log(`You have ${correctColors} correct color(s).`);//rimuivere alla fine
+        console.log(`You have ${correctButWrongPositionColors} color(s) but in WRONG POSITION.`);//same here
         game();
     }
 
@@ -189,7 +190,7 @@ const game = () => {
 
     //checking if it is a full 4 color row  
     rowNumberCalculator();
-    console.log("row number is "+rowNumber);
+    
 //********** *//FINO A QUI FUNZIONA BENE-CONTINUARE A DIVIDERE PER FUNZIONI
     //caso che la row e´ completa
     if (isItARow) {
@@ -204,55 +205,40 @@ const game = () => {
             // Convert the RGB value to a color name
             let userColorName = colorTranslator[userColorRGB];
             usersColorsRow.push(userColorName);
-            console.log(usersColorsRow)
+            
 
 //************//sviluppare da qui 
             if (usersColorsRow[i] === computerColourChoice[i]) {
                         
                 correctColors++;
-
-                let pegId = "#peg" + (i);
+                let IndexNumber= (i) + 4*(rowNumber-1);
+                let pegId = "#peg" + IndexNumber;
                 $(pegId).css("background-color", "green");
-
+                console.log("peg id is"+pegId);
                 } else if (computerColourChoice.includes(usersColorsRow[i])) {
                     correctButWrongPositionColors++;
-
-                    let pegId = "#peg" + (i);
+                    let IndexNumber= (i) + 4*(rowNumber-1);
+                    let pegId = "#peg" + IndexNumber;
                     $(pegId).css("background-color", "grey");
+                    console.log("peg id is"+pegId);
+                } else {
+                    let IndexNumber= (i) + 4*(rowNumber-1);
+                    let pegId = "#peg" + IndexNumber;
+                    $(pegId).css("background-color", "red");
+                    console.log("peg id is"+pegId);
                 }
         }
-        
-        /*area dedicata a peg cells
-        for (let i = 0; i < totalBoardAndPegCells; i++) {
-            let pegId = "#peg" + (i);
-
-
-
-            $(pegId).css("background-color", "green");
-        }
-*/
-
-
-
-
-
-
-
-
-
         // Reset the user's colors row
-        usersColorsRow = [];
-              
+        usersColorsRow = [];      
     }
             
     // Move to the next board cell
     currentBoardIndex++;
-
-    console.log(currentBoardIndex);
+    
     checkWinOrLoss();
-   
 
     })//end of $(".box").on("click")
+    
 
 }//end of function game ();
     
@@ -278,16 +264,4 @@ $(".instructions").click(() => {
     $("h3").text("Guess the 4 colours the computer has choosen. \nThe colours choosen by the computer will be ALL different");
 })
 
-
-})
-
-/*
-COME PROSEGUIRE:
-Assegnare pegs-convertitre con boreder color in base match
-if attempt%4=0 show message????
-
-DA RIFINIRE ALLA FINE
-inserire timer?
-
-
-*/
+})//end of Jquery function
