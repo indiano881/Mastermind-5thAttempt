@@ -29,7 +29,7 @@ const colorTranslator = {
     "rgb(255, 192, 203)": "pink",
     "rgb(165, 42, 42)": "brown",
     "rgb(0, 255, 255)": "aqua"
-};
+}
 
 
 //create boards cells-
@@ -148,6 +148,17 @@ const startNewGame = () => {
     game();
 }
 
+const updatePegCells = () => {//inserire 4 condizine con modulo4???
+    for (let i = 0; i < totalBoardAndPegCells; i++) {
+        let pegId = "#peg" + (i);
+        $(pegId).css("background-color", "green");
+    }
+
+    for (let i = correctColors; i < (correctColors + correctButWrongPositionColors); i++) {
+        let pegId = "#peg" + (currentBoardIndex - 4 + i);
+        $(pegId).css("background-color", "yellow"); // You can use a different color for this if you prefer
+    }
+}
 
 
 
@@ -204,9 +215,20 @@ const game = () => {
                     correctButWrongPositionColors++;
                 }
         }
+        updatePegCells();
+        //area dedicata a peg cells
             
-        
-            
+
+
+
+
+
+
+
+
+
+
+        //area dedicata a peg cells
         // Reset the user's colors row
         usersColorsRow = [];
               
