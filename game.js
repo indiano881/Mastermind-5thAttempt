@@ -58,6 +58,13 @@ const hideSecretCode = () => {
     }
 }
 
+//Update statistics
+const statisticsUpdates = () => {
+    $(".stat.games").text("Games: "+ totalGames);
+    $(".stat.wins").text("Wins: "+ totalWins);
+    $(".stat.losses").text("Losses: "+ totalLosses);
+}
+
 //calculates which row is
 const rowNumberCalculator = () => {
     if ($("#board27").attr("data-revealed")==="true") {
@@ -105,18 +112,11 @@ const checkWinOrLoss = () => {
 
     } else {
         
-        console.log(`You have ${correctColors} correct color(s).`);//rimuivere alla fine
-        console.log(`You have ${correctButWrongPositionColors} color(s) but in WRONG POSITION.`);//same here
         game();
     }
 
 }
-//Update statistics
-const statisticsUpdates = () => {
-    $(".stat.games").text("Games: "+ totalGames);
-    $(".stat.wins").text("Wins: "+ totalWins);
-    $(".stat.losses").text("Losses: "+ totalLosses);
-}
+
 
 const startNewGame = () => {
     totalGames++;
@@ -147,20 +147,6 @@ const startNewGame = () => {
     hideSecretCode();
     game();
 }
-
-const updatePegCells = () => {//inserire 4 condizine con modulo4???
-    for (let i = 0; i < totalBoardAndPegCells; i++) {
-        let pegId = "#peg" + (i);
-        $(pegId).css("background-color", "green");
-    }
-
-    for (let i = correctColors; i < (correctColors + correctButWrongPositionColors); i++) {
-        let pegId = "#peg" + (currentBoardIndex - 4 + i);
-        $(pegId).css("background-color", "yellow"); // You can use a different color for this if you prefer
-    }
-}
-
-
 
 //Main game functions
 const game = () => {
