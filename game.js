@@ -177,22 +177,17 @@ const game = () => {
     //checking if it is a full 4 color row  
     rowNumberCalculator();
     
-//********** *//FINO A QUI FUNZIONA BENE-CONTINUARE A DIVIDERE PER FUNZIONI
-    //caso che la row e´ completa
+    console.log("is is a row?"+isItARow)
     if (isItARow) {
-        // Check if the user's guess matches the computer's color choice
         correctColors = 0;
         correctButWrongPositionColors=0;
 
+        // Get the RGB value from the user's guess and convert them
         for (let i = 0; i < 4; i++) {
-        // Get the RGB value from the user's guess
             let userColorRGB = $(`#board${currentBoardIndex - 3 + i}`).css("background-color");
-
-            // Convert the RGB value to a color name
             let userColorName = colorTranslator[userColorRGB];
             usersColorsRow.push(userColorName);
             
-
 //************//sviluppare da qui 
             if (usersColorsRow[i] === computerColourChoice[i]) {
                         
@@ -214,7 +209,8 @@ const game = () => {
                     console.log("peg id is"+pegId);
                 }
         }
-        // Reset the user's colors row
+        // Reset the user's colors row and put isItArow back to default menu.
+        isItARow=false;
         usersColorsRow = [];      
     }
             
