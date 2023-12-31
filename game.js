@@ -11,6 +11,7 @@ let isItARow=false;
 let rowNumber;
 let correctColors = 0;
 let correctButWrongPositionColors=0;
+let notCorrectColors=0;
 let gameOver=false;
 
 //Statistics variables
@@ -192,21 +193,12 @@ const game = () => {
             if (usersColorsRow[i] === computerColourChoice[i]) {
                         
                 correctColors++;
-                let IndexNumber= (i) + 4*(rowNumber-1);
-                let pegId = "#peg" + IndexNumber;
-                $(pegId).css("background-color", "green");
-                console.log("peg id is"+pegId);
+               
                 } else if (computerColourChoice.includes(usersColorsRow[i])) {
                     correctButWrongPositionColors++;
-                    let IndexNumber= (i) + 4*(rowNumber-1);
-                    let pegId = "#peg" + IndexNumber;
-                    $(pegId).css("background-color", "grey");
-                    console.log("peg id is"+pegId);
+                   
                 } else {
-                    let IndexNumber= (i) + 4*(rowNumber-1);
-                    let pegId = "#peg" + IndexNumber;
-                    $(pegId).css("background-color", "red");
-                    console.log("peg id is"+pegId);
+                    notCorrectColors++;
                 }
         }
         // Reset the user's colors row and put isItArow back to default menu.
