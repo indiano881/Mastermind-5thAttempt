@@ -46,13 +46,13 @@ for(let i=0; i<totalBoardAndPegCells; i++) {
 //FUNCTIONS
 //assigning colors to secret combination so that user can visualize them
 const showSecretCode = () => {
-    for (let i=1; i<5; i++) {
-        $(".secret-color"+i).attr("data-color", computerColourChoice[i-1]);
-        $(".secret-color"+i).css("background-color",computerColourChoice[i-1]);
+    for (let i=0; i<4; i++) {
+        $(".secret-color"+i).attr("data-color", computerColourChoice[i]);
+        $(".secret-color"+i).css("background-color",computerColourChoice[i]);
     }
 }
 const hideSecretCode = () => {
-    for (let i=1; i<5; i++) {
+    for (let i=0; i<4; i++) {
         $(".secret-color"+i).attr("data-color", "black");
         $(".secret-color"+i).css("background-color", "black");
     }
