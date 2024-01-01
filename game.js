@@ -150,6 +150,15 @@ const startNewGame = () => {
 }
 const pegCellMarker = () => {
         const boardColors = [];
+        const sevenRowsOfComputerColorChoiceArraY= [
+            ...computerColourChoice, 
+            ...computerColourChoice, 
+            ...computerColourChoice,
+            ...computerColourChoice, 
+            ...computerColourChoice, 
+            ...computerColourChoice,
+            ...computerColourChoice
+        ]
     
         for (let i = 0; i < totalBoardAndPegCells; i++) {
             const currentBoardId = "#board" + i;
@@ -157,6 +166,7 @@ const pegCellMarker = () => {
             boardColors.push(boardCellColor);
         }
         console.log(boardColors)
+        console.log(sevenRowsOfComputerColorChoiceArraY);
         return boardColors;
     
 }
