@@ -167,6 +167,12 @@ const pegCellMarker = () => {
         }
         console.log(boardColors)
         console.log(sevenRowsOfComputerColorChoiceArraY);
+        for (let i = 0; i < totalBoardAndPegCells; i++) {
+            if (boardColors[i]===sevenRowsOfComputerColorChoiceArraY[i]) {
+                let currentPegId = "#peg" + i;
+                $(currentPegId).css("background-color", "springgreen");
+            }
+        }
         return boardColors;
     
 }
