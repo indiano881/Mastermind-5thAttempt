@@ -148,7 +148,7 @@ const startNewGame = () => {
     hideSecretCode();
     game();
 }
-const pegCellMarker = () => {
+const pegCellMarker = (rowNumber) => {
         const boardColors = [];
         const sevenRowsOfComputerColorChoiceArraY= [
             ...computerColourChoice, 
@@ -160,14 +160,13 @@ const pegCellMarker = () => {
             ...computerColourChoice
         ]
     
-        for (let i = 0; i < totalBoardAndPegCells; i++) {
+        for (let i = 0; i < rowNumber*4; i++) {
             const currentBoardId = "#board" + i;
             const boardCellColor = colorTranslator[$(currentBoardId).css("background-color")];
             boardColors.push(boardCellColor);
         }
-        console.log(boardColors)
-        console.log(sevenRowsOfComputerColorChoiceArraY);
-        for (let i = 0; i < totalBoardAndPegCells; i++) {
+        
+        for (let i = 0; i < rowNumber*4; i++) {
             let currentPegId = "#peg" + i;
             if (boardColors[i]===sevenRowsOfComputerColorChoiceArraY[i]) {
                 
@@ -176,7 +175,6 @@ const pegCellMarker = () => {
                 $(currentPegId).css("background-color", "grey");
             }
         }
-        return boardColors;
     
 }
 //Main game functions
@@ -207,7 +205,7 @@ const game = () => {
 
     //checking if it is a full 4 color row  
     rowNumberCalculator();
-    
+    pegCellMarker(rowNumber);
     console.log("row?"+rowNumber)
     if (isItARow) {
         correctColors = 0;
@@ -234,9 +232,10 @@ const game = () => {
         }
         // Reset the user's colors row and put isItArow back to default menu.
         isItARow=false;
-        usersColorsRow = [];      
+        usersColorsRow = [];  
+             
     }
-    pegCellMarker();  
+     
     // Move to the next board cell
     currentBoardIndex++;
     
