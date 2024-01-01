@@ -92,6 +92,7 @@ button {
 
 
 .grid-display-colours {
+    
     display: grid;
     gap: 3px;
     grid-template-columns: repeat(3, 1fr);
@@ -187,12 +188,7 @@ button:hover {
 .aqua {
     background-color: aqua;
 }
-.black {
-    background-color: black;
-}
-.grey {
-    background-color: grey;
-}
+
 
 
 @media screen and (min-width: 768px){
@@ -215,9 +211,34 @@ button:hover {
    
     .box {
         min-height: 100px;
-        max-width: 300px;
+        max-width: 250px;
     }
-   
+
+   .board-cell {
+    background-color: white;
+    border: var(--border-tycker);
+    border-radius: 50%;
+    margin: 5px;
+    min-height: 75px;
+    min-width: 75px;
+    }
+
+    .peg-cell {
+    background-color: white;
+    border: var(--border-standard);
+    border-radius: 50%;
+    margin-left: 5px;
+    min-height: 50px;
+    min-width: 50px;
+    }
+    .solution-code {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-left: 10%;
+        margin-right: 10%;
+    
+    }
+
 
    
 }
