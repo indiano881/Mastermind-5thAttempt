@@ -148,7 +148,18 @@ const startNewGame = () => {
     hideSecretCode();
     game();
 }
-
+const pegCellMarker = () => {
+        const boardColors = [];
+    
+        for (let i = 0; i < totalBoardAndPegCells; i++) {
+            const currentBoardId = "#board" + i;
+            const boardCellColor = colorTranslator[$(currentBoardId).css("background-color")];
+            boardColors.push(boardCellColor);
+        }
+        console.log(boardColors)
+        return boardColors;
+    
+}
 //Main game functions
 const game = () => {
     
@@ -178,10 +189,11 @@ const game = () => {
     //checking if it is a full 4 color row  
     rowNumberCalculator();
     
-    console.log("is is a row?"+isItARow)
+    console.log("row?"+rowNumber)
     if (isItARow) {
         correctColors = 0;
         correctButWrongPositionColors=0;
+        notCorrectColors=0;
 
         // Get the RGB value from the user's guess and convert them
         for (let i = 0; i < 4; i++) {
@@ -205,7 +217,7 @@ const game = () => {
         isItARow=false;
         usersColorsRow = [];      
     }
-            
+    pegCellMarker();  
     // Move to the next board cell
     currentBoardIndex++;
     
