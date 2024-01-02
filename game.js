@@ -95,7 +95,7 @@ const checkWinOrLoss = () => {
     if (correctColors === 4) {
         
         $("h1").text("You won!");
-        $("h3").text("Win-press new game or continue session");
+        $("h3").text("Win-press new game or refresh stat");
         $(".box").off();
         showSecretCode();
         gameOver=true;
@@ -203,7 +203,7 @@ const game = () => {
     //checking if it is a full 4 color row  
     rowNumberCalculator();
     pegCellMarker(rowNumber);
-    console.log("row?"+rowNumber)
+    
     if (isItARow) {
         correctColors = 0;
         correctButWrongPositionColors=0;
@@ -247,22 +247,21 @@ const game = () => {
 
 
 $(".new-game").click(()=> {
-    //reset all statistics
-    totalGames=0;
-    totalWins=0;
-    totalLosses=0;
-
     gameOver =false;
     startNewGame();
 })
 
-$(".continue-session").click(()=> {
+$(".refresh-session").click(()=> {
+    //reset all statistics
+    totalGames=0;
+    totalWins=0;
+    totalLosses=0;
     gameOver =false;
     startNewGame();
 })
 
 $(".instructions").click(() => {
-    $("h3").text("Guess the 4 colours the computer has choosen. \nThe colours choosen by the computer will be ALL different");
+    $("h3").html("Guess the 4 colors the computer has chosen.<br>The colors chosen by the computer will be ALL different<br>Green peg means correct color in correct place.<br>Grey peg correct color but in the wrong place.")
 })
 
 })//end of Jquery function
