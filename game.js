@@ -136,8 +136,8 @@ const startNewGame = () => {
    
     //Computer colour array generator
     for (let i = 0; i < 4; i++) {
-        let removeColourIndex = Math.floor(Math.random() * copy_COLOUR_DATABASE.length);
-        computerColourChoice[i] = copy_COLOUR_DATABASE.splice(removeColourIndex, 1)[0];
+        let randomColourIndex = Math.floor(Math.random() * COLOUR_DATABASE.length);
+        computerColourChoice.push(COLOUR_DATABASE[randomColourIndex]);
     }
     console.log("the secret code is " + computerColourChoice.join(" "));
     $(".board-cell").css("background-color", "").css("border", "3px solid black").attr("data-revealed", "false");
@@ -258,7 +258,7 @@ $(".refresh-session").click(()=> {
 })
 
 $(".instructions").click(() => {
-    $("h3").html("Guess the 4 colors the computer has chosen.<br>The colors chosen by the computer will be ALL different<br>Green peg means correct color in correct place.<br>Grey peg correct color but in the wrong place.")
+    $("h3").html("Guess the 4 colors the computer has chosen.<br>Same color might be chosen multiple times by the PC<br>Green peg means correct color in correct place.<br>Grey peg correct color but in the wrong place.")
 })
 
 })//end of Jquery function
