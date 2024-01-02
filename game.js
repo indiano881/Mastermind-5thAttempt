@@ -46,7 +46,7 @@ for(let i=0; i<totalBoardAndPegCells; i++) {
 const showSecretCode = () => {
     for (let i=0; i<4; i++) {
         $(".secret-color"+i).attr("data-color", computerColourChoice[i]);
-        $(".secret-color"+i).css("background-color",computerColourChoice[i]);
+        $(".secret-color"+i).css("background-color", computerColourChoice[i]);
     }
 }
 const hideSecretCode = () => {
