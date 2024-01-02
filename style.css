@@ -28,14 +28,14 @@ body {
 }
 
 .statistics-field {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     background-color: var(--terziary-color);
     border: var(--border-tycker);
     border-radius: 10px;
-    padding: var(--padding-main);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     margin-left: 10%;
     margin-right: 10%;
+    padding: var(--padding-main);
 }
 
 .stat {
@@ -45,10 +45,8 @@ body {
 
 header,
 footer {
-    
     color: var(--secondary-color);
     padding: var(--padding-main);
-    
 
 }
 
@@ -56,43 +54,20 @@ h1 {
     font-size: calc(2rem + 2vw);
     font-style: oblique; 
     font-weight: bold;
-  
 }
 
 h3 {
-    text-align: center;
     font-size: calc(1rem + 1vw);
     font-style: oblique; 
     font-weight: bold;
+    text-align: center;
 }
 
 section {
     flex-grow: 1;
 }
-.buttons-field {
-    align-items: center;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    font-size: calc( 1.5rem + 1.5vw);
-}
-
-button {
-    background-color: #f7f7ff;
-    border: var(--border-standard);
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    margin: 1rem;
-    min-width: calc( 100px - 1.5vw);
-    padding: 0.5rem;
-    text-align: center;
-    text-decoration: none; 
-    transition: all linear 0.4s; 
-}
-
 
 .grid-display-colours {
-    
     display: grid;
     gap: 3px;
     grid-template-columns: repeat(3, 1fr);
@@ -129,6 +104,10 @@ button:hover {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(7, 1fr);
 }
+.pegs {
+    align-items: center;
+    
+}
 
 .board-cell {
     background-color: white;
@@ -143,8 +122,8 @@ button:hover {
     background-color: white;
     border: var(--border-standard);
     border-radius: 50%;
-    max-height: 35px;
-    min-width: 25px;
+    height: 25px;
+    width: 25px;
 }
 
 .solution-code {
@@ -152,18 +131,39 @@ button:hover {
     grid-template-columns: repeat(4, 1fr);
 
 }
+
 .container-solution {
+    background-color: var(--secondary-color);
     border: var(--border-tycker);
     border-radius: 50%;
-    background-color: var(--secondary-color);
     height:75px;
     width: 75px;
-
 }
+
+.buttons-field {
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: calc( 1.5rem + 1.5vw);
+}
+
+button {
+    background-color: #f7f7ff;
+    border: var(--border-standard);
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 1rem;
+    min-width: calc( 100px - 1.5vw);
+    padding: 0.5rem;
+    text-align: center;
+    text-decoration: none; 
+    transition: all linear 0.4s; 
+}
+
 .red {
     background-color: red;
 }
-
 .orange {
     background-color: orange;
 }
@@ -188,8 +188,6 @@ button:hover {
 .aqua {
     background-color: aqua;
 }
-
-
 
 @media screen and (min-width: 768px){
     .buttons-field {

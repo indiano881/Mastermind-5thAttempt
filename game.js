@@ -240,9 +240,9 @@ const game = () => {
     currentBoardIndex++;
     
     checkWinOrLoss();
-
-    })//end of $(".box").on("click")
     
+    })//end of $(".box").on("click")
+    console.log("g"+totalGames+" W"+totalWins+ " L"+totalLosses);
 
 }//end of function game ();
     
