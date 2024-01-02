@@ -38,8 +38,9 @@ body {
     padding: var(--padding-main);
 }
 
-.stat {
-    font-size: calc(1.5rem+1.5vw);
+.stat,
+button {
+    font-size: calc(0.8rem + 1vw);
     font-weight: bold;
 }
 
@@ -106,7 +107,6 @@ button:hover {
 }
 .pegs {
     align-items: center;
-    
 }
 
 .board-cell {
@@ -129,7 +129,6 @@ button:hover {
 .solution-code {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-
 }
 
 .container-solution {
@@ -144,7 +143,6 @@ button:hover {
     align-items: center;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    font-size: calc( 1.5rem + 1.5vw);
 }
 
 button {
@@ -152,7 +150,6 @@ button {
     border: var(--border-standard);
     border-radius: 10px;
     cursor: pointer;
-    font-weight: bold;
     margin: 1rem;
     min-width: calc( 100px - 1.5vw);
     padding: 0.5rem;
@@ -194,19 +191,40 @@ button {
         align-items: center;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        font-size: calc( 1.5rem + 1.5vw);
+        
+    }
+    
+    .stat,
+    button {
+        font-size: calc( 1.2rem + 1.2vw);
     }
     
     .box {
         min-height: 90px;
         max-width: 200px;
     }
+
+    .board-cell {
+        background-color: white;
+        border: var(--border-tycker);
+        border-radius: 50%;
+        margin: 5px;
+        min-height: 75px;
+        min-width: 75px;
+    }
+    
+    .peg-cell {
+        background-color: white;
+        border: var(--border-standard);
+        border-radius: 50%;
+        margin-left: 5px;
+        height: 35px;
+        width: 35px;
+    }
    
 }
 
 @media screen and (min-width: 1024px) {
-
-   
     .box {
         min-height: 100px;
         max-width: 250px;
@@ -217,8 +235,8 @@ button {
     border: var(--border-tycker);
     border-radius: 50%;
     margin: 5px;
-    min-height: 75px;
-    min-width: 75px;
+    height: 85px;
+    width: 85px;
     }
 
     .peg-cell {
@@ -229,14 +247,11 @@ button {
     min-height: 50px;
     min-width: 50px;
     }
+
     .solution-code {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         margin-left: 10%;
         margin-right: 10%;
-    
     }
-
-
-   
 }
