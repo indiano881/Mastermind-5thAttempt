@@ -1,24 +1,23 @@
 $(()=>{
 
-//arrays    
+//Arrays    
 const COLOUR_DATABASE = ["red","orange","yellow","green","blue","purple","pink","brown","aqua"];
 let copy_COLOUR_DATABASE = Array.from(COLOUR_DATABASE);
 let computerColourChoice = new Array (4);
 let usersColorsRow = [];
-let totalBoardAndPegCells= 4*7; //4 color multipled 7 rows/possible in future to change rows with a var according to level difficulties
+//Variables
+let totalBoardAndPegCells= 4*7; //4 color multipled 7 rows/possible in future inplementation to change rows with a var according to level difficulties
 let currentBoardIndex=0;
 let isItARow=false;
 let rowNumber;
 let correctColors = 0;
-let correctButWrongPositionColors=0;
-let notCorrectColors=0;
 let gameOver=false;
-
 //Statistics variables
 let totalGames=0;
 let totalWins=0;
 let totalLosses=0;
-//convert colors
+
+//Convert RGB colors object
 const colorTranslator = {
     "rgb(255, 255, 255)": "white",
     "rgb(255, 0, 0)": "red",
@@ -32,8 +31,7 @@ const colorTranslator = {
     "rgb(0, 255, 255)": "aqua"
 }
 
-
-//create boards cells-
+//Create boards cells-
 for(let i=0; i<totalBoardAndPegCells; i++) {
     let cell = "<div class=\"board-cell\" id=board"+i+" data-revealed=\"false\"></div>";
     $(".board").append(cell);
@@ -42,7 +40,6 @@ for(let i=0; i<totalBoardAndPegCells; i++) {
     let cell = "<div class=\"peg-cell\" id=peg"+i+"></div>";
     $(".pegs").append(cell);
 }
-
 
 //FUNCTIONS
 //assigning colors to secret combination so that user can visualize them
@@ -104,7 +101,7 @@ const checkWinOrLoss = () => {
         gameOver=true;
         totalWins++;
 
-    } else if (currentBoardIndex ===totalBoardAndPegCells) {
+    } else if (currentBoardIndex === totalBoardAndPegCells) {
             
             $("h3").text("Sorry you lost");
             showSecretCode();
