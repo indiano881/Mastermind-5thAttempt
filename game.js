@@ -100,14 +100,15 @@ const checkWinOrLoss = () => {
         showSecretCode();
         gameOver=true;
         totalWins++;
-
+    
+    //Loss
     } else if (currentBoardIndex === totalBoardAndPegCells) {
             
             $("h3").text("Sorry you lost");
             showSecretCode();
             gameOver=true;
             totalLosses++;
-
+    //Neither win or loss- the game continu e
     } else {
         
         game();
@@ -117,8 +118,10 @@ const checkWinOrLoss = () => {
 
 
 const startNewGame = () => {
+
     totalGames++;
     statisticsUpdates();
+
     // Reset the game var+block all clicliking funct
     gameOver = false;
     $(".box").off(); 
@@ -127,7 +130,6 @@ const startNewGame = () => {
     $(".new-game").on("click", startNewGame);
     currentBoardIndex = 0;
     correctColors = 0;
-    correctButWrongPositionColors = 0;
     isItARow = false;
     usersColorsRow = [];
     computerColourChoice = [];
@@ -180,11 +182,11 @@ const game = () => {
     let currentBoardId = "#board" + currentBoardIndex;//inizia da 0
 
     // Add styling to the current board cell
-    
     $(currentBoardId).css("border", "5px solid black");
 
     // Handle click event for color assignment
     $(".box").on("click", event => {
+
         if (gameOver) {
             return; 
         }
@@ -192,9 +194,9 @@ const game = () => {
     let revealed= $(currentBoardId).attr("data-revealed");
             
     if (revealed==="true" ) {
-                
             return;
     }
+
     //get attribute data color from the click and put same color as background color- convert data-revealed from false to true
     let color = $(event.target).attr("data-color");
     $(currentBoardId).css("background-color", color);
@@ -214,20 +216,16 @@ const game = () => {
             let userColorRGB = $(`#board${currentBoardIndex - 3 + i}`).css("background-color");
             let userColorName = colorTranslator[userColorRGB];
             usersColorsRow.push(userColorName);
-            
-//************//sviluppare da qui 
+
             if (usersColorsRow[i] === computerColourChoice[i]) {
-                        
                 correctColors++;
                
                 } else if (computerColourChoice.includes(usersColorsRow[i])) {
                     correctButWrongPositionColors++;
-                   
-                } else {
-                    notCorrectColors++;
-                }
+        
+                } 
         }
-        // Reset the user's colors row and put isItArow back to default menu.
+        // Reset the user's colors row and put isItArow back to default value.
         isItARow=false;
         usersColorsRow = [];  
              
@@ -239,7 +237,6 @@ const game = () => {
     checkWinOrLoss();
     
     })//end of $(".box").on("click")
-    console.log("g"+totalGames+" W"+totalWins+ " L"+totalLosses);
 
 }//end of function game ();
     
