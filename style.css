@@ -47,6 +47,7 @@ button {
 header,
 footer {
     color: var(--secondary-color);
+    margin: 0;
     padding: var(--padding-main);
 
 }

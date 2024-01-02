@@ -2,14 +2,13 @@ $(()=>{
 
 //Arrays    
 const COLOUR_DATABASE = ["red","orange","yellow","green","blue","purple","pink","brown","aqua"];
-let copy_COLOUR_DATABASE = Array.from(COLOUR_DATABASE);
 let computerColourChoice = new Array (4);
 let usersColorsRow = [];
 //Variables
 let totalBoardAndPegCells= 4*7; //4 color multipled 7 rows/possible in future inplementation to change rows with a var according to level difficulties
 let currentBoardIndex=0;
 let isItARow=false;
-let rowNumber;
+let rowNumber=0;
 let correctColors = 0;
 let gameOver=false;
 //Statistics variables
@@ -131,6 +130,7 @@ const startNewGame = () => {
     currentBoardIndex = 0;
     correctColors = 0;
     isItARow = false;
+    rowNumber=0;
     usersColorsRow = [];
     computerColourChoice = [];
    
