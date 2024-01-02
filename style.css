@@ -48,7 +48,7 @@ header,
 footer {
     color: var(--secondary-color);
     margin: 0;
-    padding: var(--padding-main);
+    
 
 }
 
@@ -123,8 +123,8 @@ button:hover {
     background-color: white;
     border: var(--border-standard);
     border-radius: 50%;
-    height: 25px;
-    width: 25px;
+    height: 24px;
+    width: 24px;
 }
 
 .solution-code {
@@ -226,6 +226,13 @@ button {
 }
 
 @media screen and (min-width: 1024px) {
+    .grid-display-colours {
+        display: grid;
+        gap: 3px;
+        grid-template-columns: repeat(5, 1fr);
+        margin: 5% 10%;
+    }  
+
     .box {
         min-height: 100px;
         max-width: 250px;
